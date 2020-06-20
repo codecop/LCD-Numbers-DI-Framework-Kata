@@ -1,0 +1,14 @@
+# Eclipse
+.project
+.settings
+.classpath
+.checkstyle
+.pmd
+
+# IDEA
+.idea
+*.iml
+*.iwr
+
+# Maven
+target
