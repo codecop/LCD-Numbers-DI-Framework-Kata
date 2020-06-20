@@ -32,6 +32,21 @@ Idea by [Nat Pryce](https://twitter.com/natpryce/status/1273916454317015040):
 "Replace use of a dependency injection framework with plain old functions and
 classes that model the application domain."
 
+### First Steps
+
+[Phil Webb suggests](https://twitter.com/phillip_webb/status/1274417744205606913)
+a few things you could do to your app to make the dependency injection
+framework a bit less invasive in the first place. (These might not apply to all
+languages.)
+
+* The first is you can use constructor injection. This will make it easier
+  to create objects without the framework.
+* If you use constructor injection it's possible (and often recommended) that
+  you write tests without involving the framework at all. This will help with
+  the migration.
+* Remove classes only created to support the dependency injection mechanism, e.g.
+  `ScalingArgument`.
+
 ### License
 
 This work is licensed under a [New BSD License](http://opensource.org/licenses/bsd-license.php), see `license txt` in repository.
