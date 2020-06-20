@@ -10,11 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main implements ApplicationRunner {
 
-    private final ScalingArgument scalingArgument;
     private final LcdDisplay lcdDisplay;
 
-	public Main(ScalingArgument scalingArgument, LcdDisplay lcdDisplay) {
-		this.scalingArgument = scalingArgument;
+	public Main(LcdDisplay lcdDisplay) {
 		this.lcdDisplay = lcdDisplay;
 	}
 
@@ -29,8 +27,9 @@ public class Main implements ApplicationRunner {
         }
 
         int number = Integer.parseInt(nonOptionArgs.get(0));
+        Scaling scaling = nonOptionArgs.size() > 1 ? Scaling.of(Integer.parseInt(nonOptionArgs.get(1))) : Scaling.NONE;
 
-        System.out.print(lcdDisplay.toLcd(number, scalingArgument.getScaling()));
+        System.out.print(lcdDisplay.toLcd(number, scaling));
     }
 
     public static void main(String[] args) {
