@@ -3,7 +3,6 @@ package org.codecop.lcdnumbers;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,14 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class LcdDisplay {
 
-    @Autowired
-    private DigitsSplitter digitsSplitter;
-    @Autowired
-    private DigitScaler digitScaler;
-    @Autowired
-    private DigitPrinter digitPrinter;
+    private final DigitsSplitter digitsSplitter;
+    private final DigitScaler digitScaler;
+    private final DigitPrinter digitPrinter;
 
-    public String toLcd(int number, Scaling scaling) {
+	public LcdDisplay(DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
+		this.digitsSplitter = digitsSplitter;
+		this.digitScaler = digitScaler;
+		this.digitPrinter = digitPrinter;
+	}
+
+	public String toLcd(int number, Scaling scaling) {
         Objects.requireNonNull(scaling);
 
         List<Digit> digits = digitsSplitter.convert(number);

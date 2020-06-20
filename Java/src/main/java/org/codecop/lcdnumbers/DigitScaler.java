@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,10 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class DigitScaler {
 
-    @Autowired
-    private ScalingRepeater repeater;
+    private final ScalingRepeater repeater;
 
-    public List<Digit> scale(List<Digit> digits, Scaling scaling) {
+	public DigitScaler(ScalingRepeater repeater) {
+		this.repeater = repeater;
+	}
+
+	public List<Digit> scale(List<Digit> digits, Scaling scaling) {
         Objects.requireNonNull(digits);
         Objects.requireNonNull(scaling);
 

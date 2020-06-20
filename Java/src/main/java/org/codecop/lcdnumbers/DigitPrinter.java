@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,10 +14,13 @@ public class DigitPrinter {
 
     private static final String NEWLINE = "\n";
 
-    @Autowired
-    private Zipper zipper;
+    private final Zipper zipper;
 
-    public String render(List<Digit> digits) {
+	public DigitPrinter(Zipper zipper) {
+		this.zipper = zipper;
+	}
+
+	public String render(List<Digit> digits) {
         Objects.requireNonNull(digits);
 
         List<List<Line>> linesOfAllDigits = linesOfAllDigits(digits);

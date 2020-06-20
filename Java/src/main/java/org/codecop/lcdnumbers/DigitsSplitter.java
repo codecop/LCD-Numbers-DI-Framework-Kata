@@ -3,7 +3,6 @@ package org.codecop.lcdnumbers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,12 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class DigitsSplitter {
 
-    @Autowired
-    private NumeralSystem numeralSystem;
-    @Autowired
-    private DigitFactory digitFactory;
+    private final NumeralSystem numeralSystem;
+    private final DigitFactory digitFactory;
 
-    public List<Digit> convert(int number) {
+	public DigitsSplitter(NumeralSystem numeralSystem, DigitFactory digitFactory) {
+		this.numeralSystem = numeralSystem;
+		this.digitFactory = digitFactory;
+	}
+
+	public List<Digit> convert(int number) {
         List<Integer> numeralDigits = numeralSystem.digitsOf(number);
 
         return numeralDigits.stream(). //
