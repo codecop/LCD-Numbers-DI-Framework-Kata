@@ -4,19 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Splits a number into its digits according to its numeral system, e.g. Decimal System.
  */
-@Component
 public class NumeralSystem {
 
     private final int base;
-
-    public NumeralSystem() {
-        this(10);
-    }
 
     public NumeralSystem(int base) {
         if (base < 2) {
