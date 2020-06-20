@@ -1,12 +1,19 @@
 package org.codecop.lcdnumbers;
 
-/**
- * Fake client code. Run this class to see LCD Numbers working:
- * <code>Main 12345 2</code>.
- */
-public class Main {
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    public static void main(String... args) {
+@SpringBootApplication
+public class Main implements CommandLineRunner {
+
+    @Override
+    public void run(String... args) {
+
+        if (args.length == 0) {
+            return;
+        }
+
         final LcdDisplay lcdDisplay = new LcdDisplay( //
                 new DigitsSplitter(new NumeralSystem(), new DigitFactory(new Patterns())), //
                 new DigitScaler(new ScalingRepeater()), //
@@ -17,4 +24,9 @@ public class Main {
 
         System.out.print(lcdDisplay.toLcd(number, scaling));
     }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+
 }
