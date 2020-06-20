@@ -8,13 +8,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Run this class to see LCD Numbers working:
- * <code>java -jar target/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 2</code>.
- */
 @SpringBootApplication
 public class Main implements ApplicationRunner {
 
+    @Autowired
+    private ScalingArgument scalingArgument;
     @Autowired
     private LcdDisplay lcdDisplay;
 
@@ -23,13 +21,14 @@ public class Main implements ApplicationRunner {
 
         List<String> nonOptionArgs = args.getNonOptionArgs();
         if (nonOptionArgs.size() == 0) {
+            System.out.println("Run this class to see LCD Numbers working:");
+            System.out.println("java -jar lcd-numbers-di-framework-kata.jar 12345 2");
             return;
         }
 
         int number = Integer.parseInt(nonOptionArgs.get(0));
-        Scaling scaling = nonOptionArgs.size() > 1 ? Scaling.of(Integer.parseInt(nonOptionArgs.get(1))) : Scaling.NONE;
 
-        System.out.print(lcdDisplay.toLcd(number, scaling));
+        System.out.print(lcdDisplay.toLcd(number, scalingArgument.getScaling()));
     }
 
     public static void main(String[] args) {
