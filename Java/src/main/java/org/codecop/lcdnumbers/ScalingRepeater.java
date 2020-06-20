@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.stereotype.Service;
+
 /**
  * Repeat objects and characters according to scaling.
  */
+@Service
 public class ScalingRepeater {
 
     public <T> List<T> repeat(T element, Scaling scaling) {

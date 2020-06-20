@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Knows the initial pattern of each LCD digit.
  */
+@Repository
 public class Patterns {
 
     private final Map<Integer, List<Line>> lcdByDigit = new HashMap<>();

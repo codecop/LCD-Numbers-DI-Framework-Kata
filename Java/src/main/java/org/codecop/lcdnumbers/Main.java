@@ -1,11 +1,19 @@
 package org.codecop.lcdnumbers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Run this class to see LCD Numbers working:
+ * <code>java -jar target/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 2</code>.
+ */
 @SpringBootApplication
 public class Main implements CommandLineRunner {
+
+    @Autowired
+    private LcdDisplay lcdDisplay;
 
     @Override
     public void run(String... args) {
@@ -13,11 +21,6 @@ public class Main implements CommandLineRunner {
         if (args.length == 0) {
             return;
         }
-
-        final LcdDisplay lcdDisplay = new LcdDisplay( //
-                new DigitsSplitter(new NumeralSystem(), new DigitFactory(new Patterns())), //
-                new DigitScaler(new ScalingRepeater()), //
-                new DigitPrinter(new Zipper()));
 
         int number = Integer.parseInt(args[0]);
         Scaling scaling = args.length > 1 ? Scaling.of(Integer.parseInt(args[1])) : Scaling.NONE;

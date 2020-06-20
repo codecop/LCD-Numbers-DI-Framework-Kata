@@ -5,18 +5,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * Scales x and y of digit lines.
  */
+@Service
 public class DigitScaler {
 
-    private final ScalingRepeater repeater;
-
-    public DigitScaler(ScalingRepeater repeater) {
-        Objects.requireNonNull(repeater);
-
-        this.repeater = repeater;
-    }
+    @Autowired
+    private ScalingRepeater repeater;
 
     public List<Digit> scale(List<Digit> digits, Scaling scaling) {
         Objects.requireNonNull(digits);
