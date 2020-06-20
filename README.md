@@ -1,9 +1,13 @@
 # Refactoring LCD Numbers to remove the dependency injection framework
 
 This is an implementation of the [LCD Numbers Kata](http://rubyquiz.com/quiz14.html)
-using a dependency injection framework. There are (integrated) tests available.
+using outside-in development making use of a dependency injection framework.
+There are (integrated) tests.
 
 The starting point is available in different programming languages.
+The production code is based on the
+[LCD-Numbers-Mocking-Kata](https://github.com/codecop/LCD-Numbers-Mocking-Kata)
+which contains a description of the solution in each language.
 
 ## Requirements (copied from Ruby Quiz)
 
