@@ -57,6 +57,7 @@ Loads of the dysfunction I see in apps that use DI heavily.
 * Loads of pointless logging.
 * Slow to start.
 * DI annotations in domain classes.
+* A bit of polymorphism making code navigation in the IDE more difficult.
 * And even more smells. "It's like a fractal of code smells."
 
 ### License

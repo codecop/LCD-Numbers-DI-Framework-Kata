@@ -1,18 +1,10 @@
 package org.codecop.lcdnumbers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 /**
  * Creates (LCD) digits from patterns.
  */
-@Service
-public class DigitFactory {
+public interface DigitFactory {
 
-    @Autowired
-    private Patterns patterns;
+    Digit create(int digit);
 
-    public Digit create(int digit) {
-        return new Digit(digit, patterns);
-    }
 }

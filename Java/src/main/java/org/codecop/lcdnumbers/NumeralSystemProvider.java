@@ -12,6 +12,6 @@ public class NumeralSystemProvider {
 
     @Bean
     public NumeralSystem createNumeralSystem() {
-        return new NumeralSystem(base);
+        return new NumeralSystemImpl(base);
     }
 }
