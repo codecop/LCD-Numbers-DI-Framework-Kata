@@ -1,7 +1,7 @@
 # Refactoring LCD Numbers to remove the dependency injection framework
 
 This is an implementation of the [LCD Numbers Kata](http://rubyquiz.com/quiz14.html)
-using outside-in development making use of a dependency injection framework.
+using (excessive) outside-in development and making use of a dependency injection framework.
 There are (integrated) tests.
 
 The starting point is available in different programming languages.
@@ -28,8 +28,8 @@ Read more about it at [RubyQuiz](http://rubyquiz.com/quiz14.html).
 
 ## Your Task
 
-Idea by [Nat Pryce](https://twitter.com/natpryce/status/1273916454317015040):
-"Replace use of a dependency injection framework with plain old functions and
+The original ideas is by [Nat Pryce](https://twitter.com/natpryce/status/1273916454317015040) to
+"replace use of a dependency injection framework with plain old functions and
 classes that model the application domain."
 
 ### First Steps
@@ -46,6 +46,18 @@ languages.)
   the migration.
 * Remove classes only created to support the dependency injection mechanism, e.g.
   `ScalingArgument`.
+
+### (Spoiler) Problems of the existing solution
+
+Loads of the dysfunction I see in apps that use DI heavily.
+
+* Needs a special test framework.
+* Dependencies obscured by reflection.
+* Objects that should be functions.
+* Loads of pointless logging.
+* Slow to start.
+* DI annotations in domain classes.
+* And even more smells. "It's like a fractal of code smells."
 
 ### License
 
