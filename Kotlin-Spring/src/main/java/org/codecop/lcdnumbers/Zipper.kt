@@ -1,18 +1,13 @@
-package org.codecop.lcdnumbers;
-
-import java.util.Collection;
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Zip joins elements of collections element wise, i.e. all first elements are joined and so on.
  */
-public interface Zipper {
-
+interface Zipper {
     @FunctionalInterface
-    public interface Combiner<T, R> {
-        R combine(T t);
+    interface Combiner<T, R> {
+        fun combine(t: T): R
     }
-
-    <T, R> List<R> zip(Collection<? extends Collection<T>> collections, Combiner<List<T>, R> combine);
-
+    
+    fun <T, R> zip(collections: Collection<Collection<T>>, combine: (List<T>)-> R): List<R>
 }

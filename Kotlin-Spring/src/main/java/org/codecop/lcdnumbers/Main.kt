@@ -1,38 +1,34 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.ApplicationArguments
+import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class Main implements ApplicationRunner {
-
+class Main : ApplicationRunner {
     @Autowired
-    private ScalingArgument scalingArgument;
+    private lateinit var scalingArgument: ScalingArgument
+    
     @Autowired
-    private LcdDisplay lcdDisplay;
-
-    @Override
-    public void run(ApplicationArguments args) {
-
-        List<String> nonOptionArgs = args.getNonOptionArgs();
-        if (nonOptionArgs.size() == 0) {
-            System.out.println("Run this class to see LCD Numbers working:");
-            System.out.println("java -jar lcd-numbers-di-framework-kata.jar 12345 2");
-            return;
+    private lateinit var lcdDisplay: LcdDisplay
+    
+    override fun run(args: ApplicationArguments) {
+        val nonOptionArgs = args.nonOptionArgs
+        if (nonOptionArgs.size == 0) {
+            println("Run this class to see LCD Numbers working:")
+            println("java -jar lcd-numbers-di-framework-kata.jar 12345 2")
+            return
         }
-
-        int number = Integer.parseInt(nonOptionArgs.get(0));
-
-        System.out.print(lcdDisplay.toLcd(number, scalingArgument.getScaling()));
+        val number = nonOptionArgs[0].toInt()
+        print(lcdDisplay.toLcd(number, scalingArgument.scaling))
     }
-
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+    
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(Main::class.java, *args)
+        }
     }
-
 }

@@ -1,30 +1,26 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.List;
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
+import java.util.Objects
 
 /**
  * Combines Converter, Scaler and Printer.
  */
 @Service
-public class LcdDisplayImpl implements LcdDisplay {
-
+class LcdDisplayImpl : LcdDisplay {
     @Autowired
-    private DigitsSplitter digitsSplitter;
+    private lateinit var digitsSplitter: DigitsSplitter
+    
     @Autowired
-    private DigitScaler digitScaler;
+    private lateinit var digitScaler: DigitScaler
+    
     @Autowired
-    private DigitPrinter digitPrinter;
-
-    @Override
-    public String toLcd(int number, Scaling scaling) {
-        Objects.requireNonNull(scaling);
-
-        List<Digit> digits = digitsSplitter.convert(number);
-        List<Digit> scaled = digitScaler.scale(digits, scaling);
-        return digitPrinter.render(scaled);
+    private lateinit var digitPrinter: DigitPrinter
+    
+    override fun toLcd(number: Int, scaling: Scaling): String {
+        val digits = digitsSplitter.convert(number)
+        val scaled = digitScaler.scale(digits, scaling)
+        return digitPrinter.render(scaled)
     }
 }

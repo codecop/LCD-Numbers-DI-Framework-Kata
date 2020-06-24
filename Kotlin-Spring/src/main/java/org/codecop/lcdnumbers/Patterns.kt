@@ -1,12 +1,8 @@
-package org.codecop.lcdnumbers;
-
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Knows the initial pattern of each LCD digit.
  */
-public interface Patterns {
-
-    List<Line> of(int digit);
-
+interface Patterns {
+    fun of(digit: Int): List<Line>
 }

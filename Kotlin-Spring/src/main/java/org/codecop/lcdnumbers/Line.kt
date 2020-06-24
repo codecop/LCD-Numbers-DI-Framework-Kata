@@ -1,44 +1,19 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.Objects;
+import java.util.Objects
 
 /**
  * Value Object of an LCD digit line.
  */
-public final class Line {
-
-    private final String line;
-
-    public Line(String line) {
-        Objects.requireNonNull(line);
-
-        this.line = line;
+data class Line(private val line: String) {
+    fun scaleHorizontal(repeater: ScalingRepeater, scaling: Scaling): Line {
+        Objects.requireNonNull(repeater)
+        Objects.requireNonNull(scaling)
+        val chars = line.toCharArray()
+        return Line(chars[0] + repeater.repeatChar(chars[1], scaling) + chars[2])
     }
-
-    public Line scaleHorizontal(ScalingRepeater repeater, Scaling scaling) {
-        Objects.requireNonNull(repeater);
-        Objects.requireNonNull(scaling);
-
-        char[] chars = line.toCharArray();
-        return new Line(chars[0] + repeater.repeat(chars[1], scaling) + chars[2]);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Line)) {
-            return false;
-        }
-        Line that = (Line) other;
-        return this.line.equals(that.line);
-    }
-
-    @Override
-    public int hashCode() {
-        return line.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return line;
+    
+    override fun toString(): String {
+        return line
     }
 }

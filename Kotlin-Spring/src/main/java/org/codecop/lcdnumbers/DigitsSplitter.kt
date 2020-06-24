@@ -1,12 +1,8 @@
-package org.codecop.lcdnumbers;
-
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Splits into digits and converts digits to LCD digits.
  */
-public interface DigitsSplitter {
-
-    List<Digit> convert(int number);
-
+interface DigitsSplitter {
+    fun convert(number: Int): List<Digit>
 }

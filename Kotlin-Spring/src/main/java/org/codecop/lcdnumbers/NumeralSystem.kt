@@ -1,12 +1,8 @@
-package org.codecop.lcdnumbers;
-
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Splits a number into its digits according to its numeral system, e.g. Decimal System.
  */
-public interface NumeralSystem {
-
-    List<Integer> digitsOf(int value);
-
+interface NumeralSystem {
+    fun digitsOf(value: Int): List<Int>
 }

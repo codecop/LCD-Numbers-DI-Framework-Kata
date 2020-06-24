@@ -1,51 +1,41 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
+import java.util.Objects
 
 /**
  * Appends lines next to each other and adds line breaks.
  */
 @Service
-public class DigitPrinterImpl implements DigitPrinter {
-
-    private static final String NEWLINE = "\n";
-
+class DigitPrinterImpl : DigitPrinter {
     @Autowired
-    private Zipper zipper;
-
-    @Override
-    public String render(List<Digit> digits) {
-        Objects.requireNonNull(digits);
-
-        List<List<Line>> linesOfAllDigits = linesOfAllDigits(digits);
-        List<String> linesSideBySide = zip(linesOfAllDigits);
-        return join(linesSideBySide);
+    private lateinit var zipper: Zipper
+    
+    override fun render(digits: List<Digit>): String {
+        Objects.requireNonNull(digits)
+        val linesOfAllDigits = linesOfAllDigits(digits)
+        val linesSideBySide = zip(linesOfAllDigits)
+        return join(linesSideBySide)
     }
-
-    private List<List<Line>> linesOfAllDigits(List<Digit> digits) {
-        return digits.stream(). //
-                map(Digit::lines). //
-                collect(Collectors.toList());
+    
+    private fun linesOfAllDigits(digits: List<Digit>): List<List<Line>> {
+        return digits.map { it.lines() }
     }
-
-    private List<String> zip(List<List<Line>> linesOfAllDigits) {
-        return zipper.zip(linesOfAllDigits, this::concat);
+    
+    private fun zip(linesOfAllDigits: List<List<Line>>): List<String> {
+        return zipper.zip(linesOfAllDigits) { concat(it) }
     }
-
-    private String concat(List<Line> lines) {
-        return lines.stream(). //
-                map(Line::toString). //
-                collect(Collectors.joining());
+    
+    private fun concat(lines: List<Line>): String {
+        return lines.joinToString(separator = "") { it.toString() }
     }
-
-    private String join(List<String> lines) {
-        return lines.stream(). //
-                collect(Collectors.joining(NEWLINE, "", NEWLINE));
+    
+    private fun join(lines: List<String>): String {
+        return lines.joinToString(separator = NEWLINE, prefix = "", postfix = NEWLINE)
     }
-
+    
+    companion object {
+        private const val NEWLINE = "\n"
+    }
 }

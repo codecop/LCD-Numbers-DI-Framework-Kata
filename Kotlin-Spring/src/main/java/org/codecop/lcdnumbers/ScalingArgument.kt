@@ -1,23 +1,21 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
+import org.codecop.lcdnumbers.Scaling.Companion.of
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.ApplicationArguments
+import org.springframework.context.annotation.Bean
+import org.springframework.stereotype.Repository
 
 @Repository
-public class ScalingArgument {
+class ScalingArgument {
     // This could be a @Configuration but then I cannot mock the Scaling in Main.
-
     @Autowired
-    private ApplicationArguments args;
-
-    @Bean
-    public Scaling getScaling() {
-        List<String> nonOptionArgs = args.getNonOptionArgs();
-        Scaling scaling = nonOptionArgs.size() > 1 ? Scaling.of(Integer.parseInt(nonOptionArgs.get(1))) : Scaling.NONE;
-        return scaling;
-    }
+    private lateinit var args: ApplicationArguments
+    
+    @get:Bean
+    val scaling: Scaling
+        get() {
+            val nonOptionArgs = args.nonOptionArgs
+            return if (nonOptionArgs.size > 1) of(nonOptionArgs[1].toInt()) else Scaling.NONE
+        }
 }

@@ -1,28 +1,21 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 
 /**
  * Splits into digits and converts digits to LCD digits.
  */
 @Service
-public class DigitsSplitterImpl implements DigitsSplitter {
-
+class DigitsSplitterImpl : DigitsSplitter {
     @Autowired
-    private NumeralSystem numeralSystem;
+    private lateinit var numeralSystem: NumeralSystem
+    
     @Autowired
-    private DigitFactory digitFactory;
-
-    @Override
-    public List<Digit> convert(int number) {
-        List<Integer> numeralDigits = numeralSystem.digitsOf(number);
-
-        return numeralDigits.stream(). //
-                map(digitFactory::create). //
-                collect(Collectors.toList());
+    private lateinit var digitFactory: DigitFactory
+    
+    override fun convert(number: Int): List<Digit> {
+        return numeralSystem.digitsOf(number)
+            .map { digit -> digitFactory.create(digit) }
     }
 }

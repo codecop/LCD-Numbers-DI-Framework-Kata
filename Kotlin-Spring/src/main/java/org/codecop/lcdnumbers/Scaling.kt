@@ -1,57 +1,41 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import java.util.Objects;
+import java.util.Objects
 
 /**
  * The scale factor value.
  */
-public final class Scaling {
-
-    public static final Scaling NONE = new Scaling(1);
-    public static final Scaling TWO = new Scaling(2);
-
-    private final int times;
-
-    public static Scaling of(int t) {
-        return new Scaling(t);
+data class Scaling(private val times: Int) {
+    
+    fun none(): Boolean {
+        return times == 1
     }
-
-    private Scaling(int times) {
-        if (times <= 0) {
-            throw new IllegalArgumentException("scaling factor must be >= 1");
-        }
-
-        this.times = times;
-    }
-
-    public boolean none() {
-        return times == 1;
-    }
-
-    public void times(Runnable block) {
-        Objects.requireNonNull(block);
-
-        for (int i = 0; i < times; i++) {
-            block.run();
+    
+    fun times(block: Runnable) {
+        Objects.requireNonNull(block)
+        for (i in 0 until times) {
+            block.run()
         }
     }
-
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Scaling)) {
-            return false;
+    
+    override fun toString(): String {
+        return times.toString()
+    }
+    
+    companion object {
+        @JvmField
+        val NONE = Scaling(1)
+    
+        @JvmField
+        val TWO = Scaling(2)
+        
+        @JvmStatic
+        fun of(t: Int): Scaling {
+            return Scaling(t)
         }
-        Scaling that = (Scaling) other;
-        return this.times == that.times;
     }
-
-    @Override
-    public int hashCode() {
-        return times;
-    }
-
-    @Override
-    public String toString() {
-        return Integer.toString(times);
+    
+    init {
+        require(times > 0) { "scaling factor must be >= 1" }
     }
 }

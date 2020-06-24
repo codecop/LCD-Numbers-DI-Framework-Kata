@@ -1,46 +1,42 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.system.CapturedOutput;
-import org.springframework.boot.test.system.OutputCaptureExtension;
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Mockito
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.ApplicationArguments
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.boot.test.system.CapturedOutput
+import org.springframework.boot.test.system.OutputCaptureExtension
+import java.util.Arrays
 
 @SpringBootTest
-public class LcdMainTest {
-
+class LcdMainTest {
     @MockBean
-    private ApplicationArguments args;
-
+    private lateinit var args: ApplicationArguments
+    
     @Autowired
-    private Main lcdMain;
-
+    private lateinit var lcdMain: Main
+    
     @Test
-    @ExtendWith(OutputCaptureExtension.class)
-    public void lcdAllDigitsOfSize2(CapturedOutput output) throws IOException {
-        when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890", "2"));
-
-        lcdMain.run(args);
-
-        assertEquals(Input.join(Input.allDigitsSize2()), output.getOut());
+    @ExtendWith(OutputCaptureExtension::class)
+    fun lcdAllDigitsOfSize2(output: CapturedOutput) {
+        Mockito.`when`(args.nonOptionArgs).thenReturn(Arrays.asList("1234567890", "2"))
+        
+        lcdMain.run(args)
+        
+        assertEquals(allDigitsSize2().joinLines(), output.out)
     }
-
+    
     @Test
-    @ExtendWith(OutputCaptureExtension.class)
-    public void lcdAllDigitsDefaultSize(CapturedOutput output) throws IOException {
-        when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890"));
-
-        lcdMain.run(args);
-
-        assertEquals(Input.join(Input.allDigitsSize1()), output.getOut());
+    @ExtendWith(OutputCaptureExtension::class)
+    fun lcdAllDigitsDefaultSize(output: CapturedOutput) {
+        Mockito.`when`(args.nonOptionArgs).thenReturn(Arrays.asList("1234567890"))
+        
+        lcdMain.run(args)
+        
+        assertEquals(allDigitsSize1().joinLines(), output.out)
     }
 }

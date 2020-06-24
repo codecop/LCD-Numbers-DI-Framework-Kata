@@ -1,10 +1,8 @@
-package org.codecop.lcdnumbers;
+package org.codecop.lcdnumbers
 
 /**
  * Combines Converter, Scaler and Printer.
  */
-public interface LcdDisplay {
-
-    String toLcd(int number, Scaling scaling);
-
+interface LcdDisplay {
+    fun toLcd(number: Int, scaling: Scaling): String
 }

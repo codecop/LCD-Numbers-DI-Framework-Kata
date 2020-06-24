@@ -1,14 +1,9 @@
-package org.codecop.lcdnumbers;
-
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Repeat objects and characters according to scaling.
  */
-public interface ScalingRepeater {
-
-    <T> List<T> repeat(T element, Scaling scaling);
-
-    String repeat(char aChar, Scaling scaling);
-
+interface ScalingRepeater {
+    fun <T> repeat(element: T, scaling: Scaling): List<T>
+    fun repeatChar(aChar: Char, scaling: Scaling): String
 }

@@ -1,12 +1,8 @@
-package org.codecop.lcdnumbers;
-
-import java.util.List;
+package org.codecop.lcdnumbers
 
 /**
  * Scales x and y of digit lines.
  */
-public interface DigitScaler {
-
-    List<Digit> scale(List<Digit> digits, Scaling scaling);
-
+interface DigitScaler {
+    fun scale(digits: List<Digit>, scaling: Scaling): List<Digit>
 }
