@@ -11,13 +11,10 @@ class NumeralSystemImpl(private val base: Int) : NumeralSystem {
     override fun digitsOf(value: Int): List<Int> {
         require(value >= 0) { "negative number $value" }
         
-        val digits = mutableListOf<Int>()
-        var remainder = value
-        while (remainder > 0) {
-            digits.add(remainder % base)
-            remainder /= base
-        }
-        
-        return digits.reversed()
+        return generateSequence(value, { it / base })
+            .takeWhile { it > 0 }
+            .map { it % base }
+            .toList()
+            .reversed()
     }
 }

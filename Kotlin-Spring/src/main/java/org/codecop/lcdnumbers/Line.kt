@@ -7,13 +7,9 @@ import java.util.Objects
  */
 data class Line(private val line: String) {
     fun scaleHorizontal(repeater: ScalingRepeater, scaling: Scaling): Line {
-        Objects.requireNonNull(repeater)
-        Objects.requireNonNull(scaling)
         val chars = line.toCharArray()
         return Line(chars[0] + repeater.repeatChar(chars[1], scaling) + chars[2])
     }
     
-    override fun toString(): String {
-        return line
-    }
+    override fun toString() = line
 }

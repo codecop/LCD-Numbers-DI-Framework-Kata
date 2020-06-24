@@ -13,14 +13,13 @@ class DigitPrinterImpl : DigitPrinter {
     private lateinit var zipper: Zipper
     
     override fun render(digits: List<Digit>): String {
-        Objects.requireNonNull(digits)
         val linesOfAllDigits = linesOfAllDigits(digits)
         val linesSideBySide = zip(linesOfAllDigits)
         return join(linesSideBySide)
     }
     
     private fun linesOfAllDigits(digits: List<Digit>): List<List<Line>> {
-        return digits.map { it.lines() }
+        return digits.map { it.lines }
     }
     
     private fun zip(linesOfAllDigits: List<List<Line>>): List<String> {

@@ -9,28 +9,10 @@ import java.util.ArrayList
 @Service
 class ZipperImpl : Zipper {
     override fun <T, R> zip(collections: Collection<Collection<T>>, combine: (List<T>) -> R): List<R> {
-        val zipped: MutableList<R> = ArrayList()
-        val iterators: List<Iterator<T>> = collections.map { it.iterator() }
-        
-        if (iterators.isEmpty()) {
-            return zipped
-        }
-        
-        val first = iterators[0]
-        
-        while (first.hasNext()) {
-            val nthElements = nextOfEach(iterators)
-            val joined = combine(nthElements)
-            zipped.add(joined)
-        }
-        return zipped
-    }
-    
-    private fun <T> nextOfEach(iterators: List<Iterator<T>>): List<T> {
-        val nthElements: MutableList<T> = ArrayList()
-        for (i in iterators) {
-            nthElements.add(i.next())
-        }
-        return nthElements
+        return generateSequence(collections.map { it.iterator() }, { it })
+            .takeWhile { it.all(Iterator<T>::hasNext) }
+            .map { it.map(Iterator<T>::next) }
+            .map(combine)
+            .toList()
     }
 }

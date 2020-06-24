@@ -12,8 +12,8 @@ class ScalingArgument {
     @Autowired
     private lateinit var args: ApplicationArguments
     
-    @get:Bean
     val scaling: Scaling
+        @Bean
         get() {
             val nonOptionArgs = args.nonOptionArgs
             return if (nonOptionArgs.size > 1) of(nonOptionArgs[1].toInt()) else Scaling.NONE

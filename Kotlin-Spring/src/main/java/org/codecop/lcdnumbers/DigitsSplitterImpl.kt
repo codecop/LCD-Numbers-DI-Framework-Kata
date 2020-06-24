@@ -14,8 +14,6 @@ class DigitsSplitterImpl : DigitsSplitter {
     @Autowired
     private lateinit var digitFactory: DigitFactory
     
-    override fun convert(number: Int): List<Digit> {
-        return numeralSystem.digitsOf(number)
-            .map { digit -> digitFactory.create(digit) }
-    }
+    override fun convert(number: Int) =
+        numeralSystem.digitsOf(number).map(digitFactory::create)
 }

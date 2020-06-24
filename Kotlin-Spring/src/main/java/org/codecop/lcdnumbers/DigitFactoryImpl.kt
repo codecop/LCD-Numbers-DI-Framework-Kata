@@ -11,7 +11,5 @@ class DigitFactoryImpl : DigitFactory {
     @Autowired
     private lateinit var patterns: Patterns
     
-    override fun create(digit: Int): Digit {
-        return Digit(digit, patterns)
-    }
+    override fun create(digit: Int) = Digit(digit, patterns)
 }

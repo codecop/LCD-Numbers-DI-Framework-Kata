@@ -10,68 +10,68 @@ import java.util.HashMap
  */
 @Repository
 class PatternsImpl : Patterns {
-    private val lcdByDigit = mutableMapOf<Int, List<Line>>()
-    init {
-        put(0, Line(" - "),  //
-            Line("| |"),  //
-            Line("   "),  //
-            Line("| |"),  //
-            Line(" - "))
-        put(1, Line("   "),  //
-            Line("  |"),  //
-            Line("   "),  //
-            Line("  |"),  //
-            Line("   "))
-        put(2, Line(" - "),  //
-            Line("  |"),  //
-            Line(" - "),  //
-            Line("|  "),  //
-            Line(" - "))
-        put(3, Line(" - "),  //
-            Line("  |"),  //
-            Line(" - "),  //
-            Line("  |"),  //
-            Line(" - "))
-        put(4, Line("   "),  //
-            Line("| |"),  //
-            Line(" - "),  //
-            Line("  |"),  //
-            Line("   "))
-        put(5, Line(" - "),  //
-            Line("|  "),  //
-            Line(" - "),  //
-            Line("  |"),  //
-            Line(" - "))
-        put(6, Line(" - "),  //
-            Line("|  "),  //
-            Line(" - "),  //
-            Line("| |"),  //
-            Line(" - "))
-        put(7, Line(" - "),  //
-            Line("  |"),  //
-            Line("   "),  //
-            Line("  |"),  //
-            Line("   "))
-        put(8, Line(" - "),  //
-            Line("| |"),  //
-            Line(" - "),  //
-            Line("| |"),  //
-            Line(" - "))
-        put(9, Line(" - "),  //
-            Line("| |"),  //
-            Line(" - "),  //
-            Line("  |"),  //
-            Line(" - "))
-    }
+    private val lcdByDigit = mutableMapOf(
+        0 to listOf(
+            Line(" - "),
+            Line("| |"),
+            Line("   "),
+            Line("| |"),
+            Line(" - ")),
+        1 to listOf(
+            Line("   "),
+            Line("  |"),
+            Line("   "),
+            Line("  |"),
+            Line("   ")),
+        2 to listOf(
+            Line(" - "),
+            Line("  |"),
+            Line(" - "),
+            Line("|  "),
+            Line(" - ")),
+        3 to listOf(
+            Line(" - "),
+            Line("  |"),
+            Line(" - "),
+            Line("  |"),
+            Line(" - ")),
+        4 to listOf(
+            Line("   "),
+            Line("| |"),
+            Line(" - "),
+            Line("  |"),
+            Line("   ")),
+        5 to listOf(
+            Line(" - "),
+            Line("|  "),
+            Line(" - "),
+            Line("  |"),
+            Line(" - ")),
+        6 to listOf(
+            Line(" - "),
+            Line("|  "),
+            Line(" - "),
+            Line("| |"),
+            Line(" - ")),
+        7 to listOf(
+            Line(" - "),
+            Line("  |"),
+            Line("   "),
+            Line("  |"),
+            Line("   ")),
+        8 to listOf(
+            Line(" - "),
+            Line("| |"),
+            Line(" - "),
+            Line("| |"),
+            Line(" - ")),
+        9 to listOf(
+            Line(" - "),
+            Line("| |"),
+            Line(" - "),
+            Line("  |"),
+            Line(" - ")))
     
-    private fun put(digit: Int, vararg lines: Line) {
-        require(!lcdByDigit.containsKey(digit)) { "duplicate pattern definition for digit $digit" }
-        val listOfLines = Collections.unmodifiableList(Arrays.asList(*lines))
-        lcdByDigit[digit] = listOfLines
-    }
-    
-    override fun of(digit: Int): List<Line> {
-        require(lcdByDigit.containsKey(digit)) { "no pattern defined for digit $digit" }
-        return lcdByDigit[digit]!!
-    }
+    override fun of(digit: Int): List<Line> =
+        lcdByDigit.getValue(digit)
 }

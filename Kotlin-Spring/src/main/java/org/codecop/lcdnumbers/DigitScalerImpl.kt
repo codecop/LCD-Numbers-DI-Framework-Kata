@@ -2,8 +2,6 @@ package org.codecop.lcdnumbers
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.ArrayList
-import java.util.Objects
 
 /**
  * Scales x and y of digit lines.
@@ -13,28 +11,20 @@ class DigitScalerImpl : DigitScaler {
     @Autowired
     private lateinit var repeater: ScalingRepeater
     
-    override fun scale(digits: List<Digit>, scaling: Scaling): List<Digit> {
-        return digits.map { scale(it, scaling) }
-    }
+    override fun scale(digits: List<Digit>, scaling: Scaling): List<Digit> =
+        digits.map { scale(it, scaling) }
     
-    private fun scale(digit: Digit, scaling: Scaling): Digit {
+    private fun scale(digit: Digit, scaling: Scaling): Digit =
         if (scaling.none()) {
-            return digit
+            digit
         }
-        
-        val scaled = mutableListOf<Line>()
-        
-        var oddLine = true
-        for (line in digit.lines()) {
-            val scaledLine = line.scaleHorizontal(repeater, scaling)
-            if (oddLine) {
-                scaled.add(scaledLine)
-            }
-            else {
-                scaled.addAll(repeater.repeat(scaledLine, scaling))
-            }
-            oddLine = !oddLine
+        else {
+            digit.lines
+                .map { it.scaleHorizontal(repeater, scaling) }
+                .mapIndexed { index, line ->
+                    if (index % 2 == 1) repeater.repeat(line, scaling) else listOf(line)
+                }
+                .flatten()
+                .let { digit.scale(it) }
         }
-        return digit.scale(scaled)
-    }
 }

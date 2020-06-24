@@ -7,13 +7,9 @@ import java.util.Objects
  */
 class Digit private constructor(
     private val digit: Int,
-    private val lines: List<Line>
+    val lines: List<Line>
 ) {
     constructor(digit: Int, patterns: Patterns) : this(digit, patterns.of(digit))
-    
-    fun lines(): List<Line> {
-        return lines
-    }
     
     fun scale(scaledLines: List<Line>): Digit {
         val linesCount = lines.size
@@ -22,7 +18,5 @@ class Digit private constructor(
         return Digit(digit, scaledLines)
     }
     
-    override fun toString(): String {
-        return digit.toString()
-    }
+    override fun toString() = digit.toString()
 }
