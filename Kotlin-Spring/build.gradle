@@ -1,0 +1,23 @@
+
+plugins {
+    id 'java'
+}
+
+group = 'org.codecop'
+version = '1.0.0-SNAPSHOT'
+description = 'LCD Numbers Remove DI Framework'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter:2.2.2.RELEASE'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
