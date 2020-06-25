@@ -7,7 +7,10 @@ plugins {
 group = 'org.codecop'
 version = '1.0.0-SNAPSHOT'
 description = 'LCD Numbers Remove DI Framework'
-sourceCompatibility = '1.8'
+
+ext {
+    springVersion = "2.2.2.RELEASE"
+}
 
 repositories {
     mavenLocal()
@@ -16,10 +19,10 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "org.springframework.boot:spring-boot-starter:2.2.2.RELEASE"
+    implementation "org.springframework.boot:spring-boot-starter:$springVersion"
     testImplementation "org.jetbrains.kotlin:kotlin-test"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
-    testImplementation "org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$springVersion"
 }
 
 tasks.withType(JavaCompile) {
