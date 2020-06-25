@@ -1,0 +1,30 @@
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.3.72"
+    id "org.jetbrains.kotlin.plugin.spring" version "1.3.72"
+}
+
+group = 'org.codecop'
+version = '1.0.0-SNAPSHOT'
+description = 'LCD Numbers Remove DI Framework'
+
+ext {
+    springVersion = "2.2.2.RELEASE"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.springframework.boot:spring-boot-starter:$springVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$springVersion"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
