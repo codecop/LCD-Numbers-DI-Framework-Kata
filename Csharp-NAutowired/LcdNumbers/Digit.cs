@@ -16,11 +16,6 @@ namespace Org.Codecop.Lcdnumbers
 
         private Digit(int digit, IList<Line> lines)
         {
-            if (lines == null)
-            {
-                throw new ArgumentNullException(nameof(lines));
-            }
-
             this.digit = digit;
             this.lines = lines;
         }
@@ -32,11 +27,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public virtual Digit Scale(IList<Line> scaledLines)
         {
-            if (scaledLines == null)
-            {
-                throw new ArgumentNullException(nameof(scaledLines));
-            }
-
             int linesCount = lines.Count;
             int scaledCount = scaledLines.Count;
             if (scaledCount < linesCount)

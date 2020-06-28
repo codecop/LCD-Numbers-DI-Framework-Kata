@@ -12,15 +12,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public DigitsSplitter(NumeralSystem numeralSystem, DigitFactory digitFactory)
         {
-            if (numeralSystem == null)
-            {
-                throw new ArgumentNullException(nameof(numeralSystem));
-            }
-            if (digitFactory == null)
-            {
-                throw new ArgumentNullException(nameof(digitFactory));
-            }
-
             this.numeralSystem = numeralSystem;
             this.digitFactory = digitFactory;
         }

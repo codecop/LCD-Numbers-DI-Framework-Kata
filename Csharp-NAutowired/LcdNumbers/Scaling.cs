@@ -21,7 +21,7 @@ namespace Org.Codecop.Lcdnumbers
             {
                 throw new ArgumentException("scaling factor must be >= 1");
             }
-            
+
             this.times = times;
         }
 
@@ -32,11 +32,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public virtual void Times(Action block)
         {
-            if (block == null)
-            {
-                throw new ArgumentNullException(nameof(block));
-            }
-
             for (int i = 0; i < times; i++)
             {
                 block();

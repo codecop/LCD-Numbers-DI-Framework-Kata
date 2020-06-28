@@ -11,15 +11,6 @@ namespace Org.Codecop.Lcdnumbers
     {
         public virtual IList<T> Repeat<T>(T element, Scaling scaling)
         {
-            if (element == null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-            if (scaling == null)
-            {
-                throw new ArgumentNullException(nameof(scaling));
-            }
-
             IList<T> elements = new List<T>();
             scaling.Times(() => elements.Add(element));
             return elements;
@@ -27,11 +18,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public virtual string Repeat(char aChar, Scaling scaling)
         {
-            if (scaling == null)
-            {
-                throw new ArgumentNullException(nameof(scaling));
-            }
-
             StringBuilder acc = new StringBuilder();
             scaling.Times(() => acc.Append(aChar));
             return acc.ToString();

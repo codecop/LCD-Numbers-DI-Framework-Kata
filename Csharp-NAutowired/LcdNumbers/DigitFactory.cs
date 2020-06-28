@@ -9,11 +9,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public DigitFactory(Patterns patterns)
         {
-            if (patterns == null)
-            {
-                throw new ArgumentNullException(nameof(patterns));
-            }
-
             this.patterns = patterns;
         }
 

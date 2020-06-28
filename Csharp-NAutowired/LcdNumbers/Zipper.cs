@@ -14,15 +14,6 @@ namespace Org.Codecop.Lcdnumbers
 
         public virtual IList<R> Zip<T, R>(IList<IList<T>> collections, Func<IList<T>, R> combine)
         {
-            if (collections == null)
-            {
-                throw new ArgumentNullException(nameof(collections));
-            }
-            if (combine == null)
-            {
-                throw new ArgumentNullException(nameof(combine));
-            }
-
             IList<R> zipped = new List<R>();
 
             IList<IEnumerator<T>> iterators = collections.Select(i => i.GetEnumerator()).ToList();
@@ -43,7 +34,7 @@ namespace Org.Codecop.Lcdnumbers
             IList<T> nthElements = new List<T>();
             foreach (IEnumerator<T> i in iterators)
             {
-                // Quick hack as we don't have IEnumerator.HasNext() in C#, 
+                // Quick hack as we don't have IEnumerator.HasNext() in C#,
                 // so the 1st iterator had already been moved to the next element
                 if (iterators[0] != i)
                 {

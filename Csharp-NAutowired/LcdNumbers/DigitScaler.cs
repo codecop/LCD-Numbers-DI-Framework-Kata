@@ -11,39 +11,16 @@ namespace Org.Codecop.Lcdnumbers
 
         public DigitScaler(ScalingRepeater repeater)
         {
-            if (repeater == null)
-            {
-                throw new ArgumentNullException(nameof(repeater));
-            }
-
             this.repeater = repeater;
         }
 
         public virtual IList<Digit> Scale(IList<Digit> digits, Scaling scaling)
         {
-            if (digits == null)
-            {
-                throw new ArgumentNullException(nameof(digits));
-            }
-            if (scaling == null)
-            {
-                throw new ArgumentNullException(nameof(scaling));
-            }
-
             return digits.Select(d => Scale(d, scaling)).ToList();
         }
 
         private Digit Scale(Digit digit, Scaling scaling)
         {
-            if (digit == null)
-            {
-                throw new ArgumentNullException(nameof(digit));
-            }
-            if (scaling == null)
-            {
-                throw new ArgumentNullException(nameof(scaling));
-            }
-
             if (scaling.HasNone())
             {
                 return digit;

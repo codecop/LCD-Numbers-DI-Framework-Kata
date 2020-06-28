@@ -13,21 +13,11 @@ namespace Org.Codecop.Lcdnumbers
 
         public DigitPrinter(Zipper zipper)
         {
-            if (zipper == null)
-            {
-                throw new ArgumentNullException(nameof(zipper));
-            }
-
             this.zipper = zipper;
         }
 
         public virtual string Render(IList<Digit> digits)
         {
-            if (digits == null)
-            {
-                throw new ArgumentNullException(nameof(digits));
-            }
-
             IList<IList<Line>> linesOfAllDigits = LinesOfAllDigits(digits);
             IList<string> linesSideBySide = Zip(linesOfAllDigits);
             return Join(linesSideBySide);
