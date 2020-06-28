@@ -7,9 +7,8 @@ namespace Org.Codecop.Lcdnumbers.Tests
     /// <summary>
     /// Shortcut methods to get input test data.
     /// </summary>
-    public static class Input
+    static class Input
     {
-
         public static IEnumerable<string> AllDigitsSize1()
         {
             return Read("numbers grid 3x5 - size 1.txt");
@@ -30,7 +29,8 @@ namespace Org.Codecop.Lcdnumbers.Tests
             return File.ReadAllLines(Path.Combine(@"test-resources", fileName));
         }
 
-        public static string Join(IEnumerable<string> lines) {
+        public static string Join(IEnumerable<string> lines)
+        {
             return String.Join("\n", lines) + "\n";
         }
     }
