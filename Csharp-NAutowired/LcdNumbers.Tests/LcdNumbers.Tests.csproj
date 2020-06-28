@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AssemblyName>LcdNumbers.Tests</AssemblyName>
     <PackageId>LcdNumbers.Tests</PackageId>
     <RootNamespace>Org.Codecop.Lcdnumbers.Tests</RootNamespace>
@@ -24,7 +24,7 @@
     <PackageReference Include="xunit.runner.console" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="Moq" Version="4.14.4" />
   </ItemGroup>
 
 </Project>

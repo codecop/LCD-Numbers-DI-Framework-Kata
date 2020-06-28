@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using NAutowired.Core.Attributes;
+using NAutowired.Console;
 
 namespace Org.Codecop.Lcdnumbers
 {
-    public class Program
+    public class Program : NAutowired.Core.Startup
     {
         public static void Main(string[] args)
+        {
+            ConsoleHost.CreateDefaultBuilder(() => {
+                var serviceDescriptors = new ServiceCollection();
+                //serviceDescriptors.AddTransient<FooService>();
+                return serviceDescriptors;
+            }, args).Build().Run<Program>();
+        }
+
+        public override void Run(string[] args)
         {
             if (args.Length == 0) {
                 Console.WriteLine("Run this class to see LCD Numbers working:");
