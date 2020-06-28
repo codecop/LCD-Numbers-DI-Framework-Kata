@@ -2,11 +2,13 @@
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.3.72"
     id "org.jetbrains.kotlin.plugin.spring" version "1.3.72"
+    id "org.springframework.boot" version "2.2.2.RELEASE"
 }
 
 group = 'org.codecop'
 version = '1.0.0-SNAPSHOT'
 description = 'LCD Numbers Remove DI Framework'
+sourceCompatibility = '1.8'
 
 ext {
     springVersion = "2.2.2.RELEASE"
@@ -22,7 +24,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter:$springVersion"
     testImplementation "org.jetbrains.kotlin:kotlin-test"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
-    testImplementation "org.springframework.boot:spring-boot-starter-test:$springVersion"
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    }
 }
 
 test {
@@ -31,4 +35,10 @@ test {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
 }

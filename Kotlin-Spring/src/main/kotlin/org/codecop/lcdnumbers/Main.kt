@@ -10,21 +10,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 class Main : ApplicationRunner {
     @Autowired
     private lateinit var scalingArgument: ScalingArgument
-    
+
     @Autowired
     private lateinit var lcdDisplay: LcdDisplay
-    
+
     override fun run(args: ApplicationArguments) {
         val nonOptionArgs = args.nonOptionArgs
         if (nonOptionArgs.size == 0) {
             println("Run this class to see LCD Numbers working:")
+            println("\nRunning the generated jar:");
             println("java -jar lcd-numbers-di-framework-kata.jar 12345 2")
+            println("\nRunning via Gradle:");
+            println("gradlew bootRun -Pargs=12345,2");
             return
         }
         val number = nonOptionArgs[0].toInt()
         print(lcdDisplay.toLcd(number, scalingArgument.scaling))
     }
-    
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
