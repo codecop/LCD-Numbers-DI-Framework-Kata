@@ -30,7 +30,7 @@ namespace Org.Codecop.Lcdnumbers.Tests
             return File.ReadAllLines(Path.Combine(@"test-resources", fileName));
         }
 
-        public static string join(IEnumerable<string> lines) {
+        public static string Join(IEnumerable<string> lines) {
             return String.Join("\n", lines) + "\n";
         }
     }

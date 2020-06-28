@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using NAutowired.Core.Attributes;
 using NAutowired.Console;
 
@@ -25,8 +22,7 @@ namespace Org.Codecop.Lcdnumbers
             int number = Convert.ToInt32(args[0]);
             Scaling scaling = Scaling.Of(Convert.ToInt32(args[1]));
 
-            Console.WriteLine(lcdDisplay.ToLcd(number, scaling));
-            Console.ReadKey();
+            Console.Write(lcdDisplay.ToLcd(number, scaling));
         }
 
         public static void Main(string[] args)
