@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NAutowired.Core.Attributes;
 
@@ -6,14 +5,14 @@ namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Combines Converter, Scaler and Printer.</summary>
     [Service]
-    public class LcdDisplay
+    public class LcdDisplay : ILcdDisplay
     {
         [Autowired]
-        private readonly DigitsSplitter digitsSplitter;
+        private readonly IDigitsSplitter digitsSplitter;
         [Autowired]
-        private readonly DigitScaler digitScaler;
+        private readonly IDigitScaler digitScaler;
         [Autowired]
-        private readonly DigitPrinter digitPrinter;
+        private readonly IDigitPrinter digitPrinter;
 
         public virtual string ToLcd(int number, Scaling scaling)
         {

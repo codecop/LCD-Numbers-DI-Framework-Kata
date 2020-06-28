@@ -12,7 +12,7 @@ namespace Org.Codecop.Lcdnumbers
             this.line = line;
         }
 
-        public virtual Line ScaleHorizontal(ScalingRepeater repeater, Scaling scaling)
+        public virtual Line ScaleHorizontal(IScalingRepeater repeater, Scaling scaling)
         {
             char[] chars = line.ToCharArray();
             return new Line(chars[0] + repeater.Repeat(chars[1], scaling) + chars[2]);

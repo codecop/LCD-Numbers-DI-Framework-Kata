@@ -7,13 +7,8 @@ namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Zip joins elements of collections element wise, i.e. all first elements are joined and so on.</summary>
     [Service]
-    public class Zipper
+    public class Zipper : IZipper
     {
-        public interface Combiner<T, R>
-        {
-            R Apply(T arg);
-        }
-
         public virtual IList<R> Zip<T, R>(IList<IList<T>> collections, Func<IList<T>, R> combine)
         {
             IList<R> zipped = new List<R>();

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NAutowired.Core.Attributes;
@@ -7,10 +6,10 @@ namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Scales x and y of digit lines.</summary>
     [Service]
-    public class DigitScaler
+    public class DigitScaler : IDigitScaler
     {
         [Autowired]
-        private readonly ScalingRepeater repeater;
+        private readonly IScalingRepeater repeater;
 
         public virtual IList<Digit> Scale(IList<Digit> digits, Scaling scaling)
         {
