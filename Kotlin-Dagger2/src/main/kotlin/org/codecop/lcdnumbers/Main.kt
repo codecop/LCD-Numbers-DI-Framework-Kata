@@ -11,14 +11,14 @@ class Main @Inject constructor(
     fun run() {
         if (args.isHelpRequired()) {
             println("Run this class to see LCD Numbers working:")
-            println("java -jar lcd-numbers-di-framework-kata.jar 12345 2")
+            println("\nRunning the generated jar:");
+            println("java -jar lcd-numbers-di-framework-kata-all.jar 12345 2")
             return
         }
-        
         out.print(lcdDisplay.toLcd(args.numberToDisplay, this.args.scaling))
         out.flush()
     }
-    
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
