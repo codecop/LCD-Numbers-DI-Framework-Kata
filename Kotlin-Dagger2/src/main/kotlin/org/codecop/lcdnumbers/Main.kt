@@ -13,6 +13,8 @@ class Main @Inject constructor(
             println("Run this class to see LCD Numbers working:")
             println("\nRunning the generated jar:");
             println("java -jar lcd-numbers-di-framework-kata-all.jar 12345 2")
+            println("\nRunning via Gradle:");
+            println("gradlew run --args=\"12345 2\"");
             return
         }
         out.print(lcdDisplay.toLcd(args.numberToDisplay, this.args.scaling))
