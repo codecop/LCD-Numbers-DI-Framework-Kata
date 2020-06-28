@@ -1,16 +1,14 @@
 using System;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Creates (LCD) digits from patterns.</summary>
+    [Service]
     public class DigitFactory
     {
-        private readonly Patterns patterns;
-
-        public DigitFactory(Patterns patterns)
-        {
-            this.patterns = patterns;
-        }
+        [Autowired]
+        private readonly IPatterns patterns;
 
         public virtual Digit Create(int digit)
         {

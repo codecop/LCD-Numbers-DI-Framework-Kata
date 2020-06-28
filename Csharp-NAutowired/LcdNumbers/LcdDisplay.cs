@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Combines Converter, Scaler and Printer.</summary>
+    [Service]
     public class LcdDisplay
     {
+        [Autowired]
         private readonly DigitsSplitter digitsSplitter;
+        [Autowired]
         private readonly DigitScaler digitScaler;
+        [Autowired]
         private readonly DigitPrinter digitPrinter;
-
-        public LcdDisplay(DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter)
-        {
-            this.digitsSplitter = digitsSplitter;
-            this.digitScaler = digitScaler;
-            this.digitPrinter = digitPrinter;
-        }
 
         public virtual string ToLcd(int number, Scaling scaling)
         {

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Knows the initial pattern of each LCD digit.</summary>
+    [Repository]
     public class Patterns : IPatterns
     {
         private readonly IDictionary<int, IList<Line>> lcdByDigit = new Dictionary<int, IList<Line>>();

@@ -2,19 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Appends lines next to each other and adds line breaks.</summary>
+    [Service]
     public class DigitPrinter
     {
         private const string Newline = "\n";
+        [Autowired]
         private readonly Zipper zipper;
-
-        public DigitPrinter(Zipper zipper)
-        {
-            this.zipper = zipper;
-        }
 
         public virtual string Render(IList<Digit> digits)
         {

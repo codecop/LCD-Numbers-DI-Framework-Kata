@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Splits a number into its digits according to its numeral system, e.g. Decimal System.</summary>
+    [Service]
     public class NumeralSystem
     {
         private readonly int @base;
@@ -32,7 +34,7 @@ namespace Org.Codecop.Lcdnumbers
             }
 
             IList<int> digits = new List<int>();
-            
+
             int remainder = value;
             while (remainder > 0)
             {

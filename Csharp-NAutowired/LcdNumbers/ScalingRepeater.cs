@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Repeat objects and characters according to scaling.</summary>
+    [Service]
     public class ScalingRepeater
     {
         public virtual IList<T> Repeat<T>(T element, Scaling scaling)

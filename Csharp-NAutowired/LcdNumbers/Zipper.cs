@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NAutowired.Core.Attributes;
 
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Zip joins elements of collections element wise, i.e. all first elements are joined and so on.</summary>
+    [Service]
     public class Zipper
     {
         public interface Combiner<T, R>
