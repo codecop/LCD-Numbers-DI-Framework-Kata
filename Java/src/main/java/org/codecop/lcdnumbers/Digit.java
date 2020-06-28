@@ -16,8 +16,6 @@ public final class Digit {
     }
 
     private Digit(int digit, List<Line> lines) {
-        Objects.requireNonNull(lines);
-
         this.digit = digit;
         this.lines = lines;
     }
@@ -27,8 +25,6 @@ public final class Digit {
     }
 
     public Digit scale(List<Line> scaledLines) {
-        Objects.requireNonNull(scaledLines);
-
         int linesCount = lines.size();
         int scaledCount = scaledLines.size();
         if (scaledCount < linesCount) {

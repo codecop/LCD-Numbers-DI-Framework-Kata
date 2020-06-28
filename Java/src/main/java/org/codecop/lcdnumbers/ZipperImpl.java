@@ -17,9 +17,6 @@ public class ZipperImpl implements Zipper {
 
     @Override
     public <T, R> List<R> zip(Collection<? extends Collection<T>> collections, Combiner<List<T>, R> combine) {
-        Objects.requireNonNull(collections);
-        Objects.requireNonNull(combine);
-
         List<R> zipped = new ArrayList<>();
 
         List<Iterator<T>> iterators = collections.stream(). //

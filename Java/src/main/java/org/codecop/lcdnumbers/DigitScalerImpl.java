@@ -19,18 +19,12 @@ public class DigitScalerImpl implements DigitScaler {
 
     @Override
     public List<Digit> scale(List<Digit> digits, Scaling scaling) {
-        Objects.requireNonNull(digits);
-        Objects.requireNonNull(scaling);
-
         return digits.stream(). //
                 map(d -> scale(d, scaling)). //
                 collect(Collectors.toList());
     }
 
     private Digit scale(Digit digit, Scaling scaling) {
-        Objects.requireNonNull(digit);
-        Objects.requireNonNull(scaling);
-
         if (scaling.none()) {
             return digit;
         }

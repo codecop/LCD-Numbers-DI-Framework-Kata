@@ -29,8 +29,6 @@ public final class Scaling {
     }
 
     public void times(Runnable block) {
-        Objects.requireNonNull(block);
-
         for (int i = 0; i < times; i++) {
             block.run();
         }

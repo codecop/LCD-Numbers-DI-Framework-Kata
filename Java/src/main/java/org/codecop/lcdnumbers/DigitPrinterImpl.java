@@ -20,8 +20,6 @@ public class DigitPrinterImpl implements DigitPrinter {
 
     @Override
     public String render(List<Digit> digits) {
-        Objects.requireNonNull(digits);
-
         List<List<Line>> linesOfAllDigits = linesOfAllDigits(digits);
         List<String> linesSideBySide = zip(linesOfAllDigits);
         return join(linesSideBySide);

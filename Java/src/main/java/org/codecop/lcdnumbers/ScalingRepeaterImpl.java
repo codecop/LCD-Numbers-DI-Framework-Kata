@@ -14,9 +14,6 @@ public class ScalingRepeaterImpl implements ScalingRepeater {
 
     @Override
     public <T> List<T> repeat(T element, Scaling scaling) {
-        Objects.requireNonNull(element);
-        Objects.requireNonNull(scaling);
-
         List<T> elements = new ArrayList<>();
         scaling.times(() -> elements.add(element));
         return elements;
@@ -24,8 +21,6 @@ public class ScalingRepeaterImpl implements ScalingRepeater {
 
     @Override
     public String repeat(char aChar, Scaling scaling) {
-        Objects.requireNonNull(scaling);
-
         StringBuilder acc = new StringBuilder();
         scaling.times(() -> acc.append(aChar));
         return acc.toString();

@@ -10,15 +10,10 @@ public final class Line {
     private final String line;
 
     public Line(String line) {
-        Objects.requireNonNull(line);
-
         this.line = line;
     }
 
     public Line scaleHorizontal(ScalingRepeater repeater, Scaling scaling) {
-        Objects.requireNonNull(repeater);
-        Objects.requireNonNull(scaling);
-
         char[] chars = line.toCharArray();
         return new Line(chars[0] + repeater.repeat(chars[1], scaling) + chars[2]);
     }
