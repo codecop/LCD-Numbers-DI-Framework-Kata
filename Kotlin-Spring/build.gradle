@@ -25,6 +25,10 @@ dependencies {
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springVersion"
 }
 
+test {
+    useJUnitPlatform()
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
