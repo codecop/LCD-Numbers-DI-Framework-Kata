@@ -43,16 +43,10 @@ namespace Org.Codecop.Lcdnumbers
             ConsoleHost.CreateDefaultBuilder(() =>
             {
                 var serviceDescriptors = new ServiceCollection();
-                    Console.WriteLine("xxxxx" + configuration.GetSection("NumberBase"));
                 serviceDescriptors.Configure<NumberBaseConfig>(configuration.GetSection("NumberBase"));
 
-                serviceDescriptors.AddSingleton(typeof(INumeralSystem), serviceProvider =>
-                {
-                    Console.WriteLine("xxxxx" + serviceProvider);
-                    Console.WriteLine("xxxxx" + serviceProvider.GetService<NumeralSystemProvider>());
-                    Console.WriteLine("xxxxx" + serviceProvider.GetService<NumeralSystemProvider>().CreateNumeralSystem());
-                    return serviceProvider.GetService<NumeralSystemProvider>().CreateNumeralSystem();
-                });
+                serviceDescriptors.AddSingleton(typeof(INumeralSystem),
+                    serviceProvider => serviceProvider.GetRequiredService<NumeralSystemProvider>().CreateNumeralSystem());
 
                 return serviceDescriptors;
             }, new List<string> { "LcdNumbers" }, args).
