@@ -20,6 +20,8 @@ namespace Org.Codecop.Lcdnumbers
             if (args.Length == 0)
             {
                 Console.WriteLine("Run this class to see LCD Numbers working:");
+                Console.WriteLine("\nRunning the generated exe:");
+                Console.WriteLine("LcdNumbers\\bin\\Debug\\netcoreapp3.0\\LcdNumbers.exe 12345 2");
                 Console.WriteLine("\nRunning via dotnet:");
                 Console.WriteLine("dotnet run --project LcdNumbers 12345 2");
                 return;
