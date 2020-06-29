@@ -13,11 +13,14 @@ namespace Org.Codecop.Lcdnumbers
     public class Program : NAutowired.Core.Startup
     {
         [Autowired]
+        private readonly ICommandLineArguments arguments;
+
+        [Autowired]
         private readonly LcdDisplay lcdDisplay;
 
         public override void Run(string[] args)
         {
-            if (args.Length == 0)
+            if (arguments.IsHelpRequired())
             {
                 Console.WriteLine("Run this class to see LCD Numbers working:");
                 Console.WriteLine("\nRunning the generated exe:");
@@ -27,14 +30,15 @@ namespace Org.Codecop.Lcdnumbers
                 return;
             }
 
-            int number = Convert.ToInt32(args[0]);
-            var scaling = args.Length > 1 ? Scaling.Of(Convert.ToInt32(args[1])) : Scaling.None;
+            int number = arguments.GetNumberToDisplay();
+            var scaling = arguments.GetScaling();
 
             Console.Write(lcdDisplay.ToLcd(number, scaling));
         }
         public static void Main(string[] args)
         {
-            BuildConsoleHost(args).Run<Program>();
+            BuildConsoleHost(args)
+                .Run<Program>();
         }
 
         public static NAutowired.Core.IConsoleHost BuildConsoleHost(string[] args)
@@ -42,18 +46,19 @@ namespace Org.Codecop.Lcdnumbers
             var config = LoadConfig();
             return ConsoleHost.CreateDefaultBuilder(services =>
             {
+                services.AddTransient(typeof(ICommandLineArguments),
+                    serviceProvider => new CommandLineArguments(args));
                 services.AddTransient(typeof(INumeralSystem),
                     serviceProvider => new NumeralSystem(config.NumeralSystemBase));
 
-            }, new List<string> { "LcdNumbers" }, args).Build();
+            }, new List<string> { "LcdNumbers" }, new string[0])
+                .Build();
         }
 
         private static Config LoadConfig()
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                //.AddEnvironmentVariables()
-                //.AddCommandLine(args)
                 .Build();
             var config = new Config();
             configuration.Bind(config);
