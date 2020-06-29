@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NAutowired.Console;
-using Xunit;
+﻿using Xunit;
 
 namespace Org.Codecop.Lcdnumbers.Tests
 {
@@ -10,7 +8,6 @@ namespace Org.Codecop.Lcdnumbers.Tests
         public void LcdAllDigitsOfSize2()
         {
             var args = new string[] { "1234567890", "2" };
-            // when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890", "2"));
             var consoleHost = Program.BuildConsoleHost(args);
 
             var output = Capture.ConsoleOutput(() => consoleHost.Run<Program>());
@@ -22,7 +19,6 @@ namespace Org.Codecop.Lcdnumbers.Tests
         public void LcdAllDigitsDefaultSize()
         {
             var args = new string[] { "1234567890" };
-            // when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890"));
             var consoleHost = Program.BuildConsoleHost(args);
 
             var output = Capture.ConsoleOutput(() => consoleHost.Run<Program>());
