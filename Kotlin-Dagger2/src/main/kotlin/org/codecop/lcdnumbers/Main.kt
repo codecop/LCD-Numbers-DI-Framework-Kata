@@ -12,7 +12,7 @@ class Main @Inject constructor(
         if (args.isHelpRequired()) {
             println("Run this class to see LCD Numbers working:")
             println("\nRunning the generated jar:");
-            println("java -jar lcd-numbers-di-framework-kata-all.jar 12345 2")
+            println("java -jar build/libs/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT-all.jar 12345 2")
             println("\nRunning via Gradle:");
             println("gradlew run --args=\"12345 2\"");
             return

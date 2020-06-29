@@ -23,9 +23,9 @@ public class Main implements ApplicationRunner {
         if (nonOptionArgs.size() == 0) {
             System.out.println("Run this class to see LCD Numbers working:");
             System.out.println("\nRunning the generated jar:");
-            System.out.println("java -jar lcd-numbers-di-framework-kata.jar 12345 2");
+            System.out.println("java -jar target/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 2");
             System.out.println("\nRunning via Maven:");
-            System.out.println("mvn spring-boot:run -Dspring-boot.run.arguments=12345,2");
+            System.out.println("mvnw spring-boot:run -Dspring-boot.run.arguments=12345,2");
             return;
         }
 

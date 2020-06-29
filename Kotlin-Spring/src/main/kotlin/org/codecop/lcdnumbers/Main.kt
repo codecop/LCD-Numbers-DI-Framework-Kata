@@ -19,7 +19,7 @@ class Main : ApplicationRunner {
         if (nonOptionArgs.size == 0) {
             println("Run this class to see LCD Numbers working:")
             println("\nRunning the generated jar:");
-            println("java -jar lcd-numbers-di-framework-kata.jar 12345 2")
+            println("java -jar build/libs/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 2")
             println("\nRunning via Gradle:");
             println("gradlew bootRun -Pargs=12345,2");
             return
