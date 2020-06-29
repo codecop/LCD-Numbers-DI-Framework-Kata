@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class NumeralSystemProvider {
 
-    @Value("${numeral_systen_base}")
-    private int base = 10;
+    @Value("${numeral_system_base}")
+    private int base;
 
     @Bean
     public NumeralSystem createNumeralSystem() {

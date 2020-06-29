@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class NumeralSystemProvider {
-    @Value("\${numeral_systen_base}")
-    private val base = 10
-    
+    @Value("\${numeral_system_base}")
+    private val base = 0;
+
     @Bean
     fun createNumeralSystem(): NumeralSystem {
         return NumeralSystemImpl(base)
