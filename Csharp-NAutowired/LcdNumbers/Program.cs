@@ -30,28 +30,37 @@ namespace Org.Codecop.Lcdnumbers
 
             Console.Write(lcdDisplay.ToLcd(number, scaling));
         }
-
         public static void Main(string[] args)
         {
-            // see https://pradeeploganathan.com/dotnet/configuration-in-a-net-core-console-application/
+            BuildConsoleHost(args).Run<Program>();
+        }
+
+        public static NAutowired.Core.IConsoleHost BuildConsoleHost(string[] args)
+        {
+            var config = LoadConfig();
+            return ConsoleHost.CreateDefaultBuilder(services =>
+            {
+                services.AddTransient(typeof(INumeralSystem),
+                    serviceProvider => new NumeralSystem(config.NumeralSystemBase));
+
+            }, new List<string> { "LcdNumbers" }, args).Build();
+        }
+
+        private static Config LoadConfig()
+        {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                 //.AddEnvironmentVariables()
                 //.AddCommandLine(args)
                 .Build();
-
-            ConsoleHost.CreateDefaultBuilder(() =>
-            {
-                var serviceDescriptors = new ServiceCollection();
-                serviceDescriptors.Configure<NumberBaseConfig>(configuration.GetSection("NumberBase"));
-
-                serviceDescriptors.AddSingleton(typeof(INumeralSystem),
-                    serviceProvider => serviceProvider.GetRequiredService<NumeralSystemProvider>().CreateNumeralSystem());
-
-                return serviceDescriptors;
-            }, new List<string> { "LcdNumbers" }, args).
-                Build().
-                Run<Program>();
+            var config = new Config();
+            configuration.Bind(config);
+            return config;
         }
+    }
+
+    public class Config
+    {
+        public int NumeralSystemBase { get; set; }
     }
 }

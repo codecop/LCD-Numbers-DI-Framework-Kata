@@ -11,8 +11,7 @@ namespace Org.Codecop.Lcdnumbers.Tests
         {
             var args = new string[] { "1234567890", "2" };
             // when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890", "2"));
-            var consoleHost = ConsoleHost.CreateDefaultBuilder(new List<string> { "LcdNumbers" }, args).
-                Build();
+            var consoleHost = Program.BuildConsoleHost(args);
 
             var output = Capture.ConsoleOutput(() => consoleHost.Run<Program>());
 
@@ -24,8 +23,7 @@ namespace Org.Codecop.Lcdnumbers.Tests
         {
             var args = new string[] { "1234567890" };
             // when(args.getNonOptionArgs()).thenReturn(Arrays.asList("1234567890"));
-            var consoleHost = ConsoleHost.CreateDefaultBuilder(new List<string> { "LcdNumbers" }, args).
-                Build();
+            var consoleHost = Program.BuildConsoleHost(args);
 
             var output = Capture.ConsoleOutput(() => consoleHost.Run<Program>());
 
