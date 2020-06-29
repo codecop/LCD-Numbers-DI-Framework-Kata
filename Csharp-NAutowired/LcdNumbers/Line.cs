@@ -1,5 +1,3 @@
-using System;
-
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Value Object of an LCD digit line.</summary>
