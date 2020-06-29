@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using NAutowired.Core.Attributes;
 using NAutowired.Console;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace Org.Codecop.Lcdnumbers
 {
@@ -31,7 +33,29 @@ namespace Org.Codecop.Lcdnumbers
 
         public static void Main(string[] args)
         {
-            ConsoleHost.CreateDefaultBuilder(new List<string> { "LcdNumbers" }, args).
+            // see https://pradeeploganathan.com/dotnet/configuration-in-a-net-core-console-application/
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                //.AddEnvironmentVariables()
+                //.AddCommandLine(args)
+                .Build();
+
+            ConsoleHost.CreateDefaultBuilder(() =>
+            {
+                var serviceDescriptors = new ServiceCollection();
+                    Console.WriteLine("xxxxx" + configuration.GetSection("NumberBase"));
+                serviceDescriptors.Configure<NumberBaseConfig>(configuration.GetSection("NumberBase"));
+
+                serviceDescriptors.AddSingleton(typeof(INumeralSystem), serviceProvider =>
+                {
+                    Console.WriteLine("xxxxx" + serviceProvider);
+                    Console.WriteLine("xxxxx" + serviceProvider.GetService<NumeralSystemProvider>());
+                    Console.WriteLine("xxxxx" + serviceProvider.GetService<NumeralSystemProvider>().CreateNumeralSystem());
+                    return serviceProvider.GetService<NumeralSystemProvider>().CreateNumeralSystem();
+                });
+
+                return serviceDescriptors;
+            }, new List<string> { "LcdNumbers" }, args).
                 Build().
                 Run<Program>();
         }

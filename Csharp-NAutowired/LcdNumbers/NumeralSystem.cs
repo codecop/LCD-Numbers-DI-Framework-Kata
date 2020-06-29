@@ -6,15 +6,9 @@ using NAutowired.Core.Attributes;
 namespace Org.Codecop.Lcdnumbers
 {
     /// <summary>Splits a number into its digits according to its numeral system, e.g. Decimal System.</summary>
-    [Service]
     public class NumeralSystem : INumeralSystem
     {
         private readonly int @base;
-
-        public NumeralSystem()
-            : this(10)
-        {
-        }
 
         public NumeralSystem(int @base)
         {
