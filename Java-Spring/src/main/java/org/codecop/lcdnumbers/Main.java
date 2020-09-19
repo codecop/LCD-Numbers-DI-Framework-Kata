@@ -15,7 +15,7 @@ public class Main implements ApplicationRunner {
 
     public Main(ScalingArgument scalingArgument, DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
         this.scalingArgument = scalingArgument;
-        this.lcdDisplay = new LcdDisplayImpl(digitsSplitter, digitScaler, digitPrinter);
+        this.lcdDisplay = new LcdDisplay(digitsSplitter, digitScaler, digitPrinter);
     }
 
     @Override
