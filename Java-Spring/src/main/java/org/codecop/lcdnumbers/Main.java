@@ -12,8 +12,9 @@ public class Main implements ApplicationRunner {
 
     private final LcdDisplay lcdDisplay;
 
-    public Main(DigitScaler digitScaler, DigitPrinter digitPrinter, NumeralSystem numeralSystem, DigitFactory digitFactory) {
+    public Main(DigitPrinter digitPrinter, NumeralSystem numeralSystem, DigitFactory digitFactory, ScalingRepeater repeater) {
         DigitsSplitter digitsSplitter = new DigitsSplitter(numeralSystem, digitFactory);
+        DigitScaler digitScaler = new DigitScaler(repeater);
         this.lcdDisplay = new LcdDisplay(digitsSplitter, digitScaler, digitPrinter);
     }
 
