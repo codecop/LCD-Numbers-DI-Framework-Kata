@@ -35,10 +35,10 @@ public class Main implements ApplicationRunner {
 
         int number = Integer.parseInt(nonOptionArgs.get(0));
 
-        System.out.print(lcdDisplay.toLcd(number, getScaling(args)));
+        System.out.print(lcdDisplay.toLcd(number, createScalingFrom(args)));
     }
 
-    public static Scaling getScaling(ApplicationArguments args) {
+    private Scaling createScalingFrom(ApplicationArguments args) {
         List<String> nonOptionArgs = args.getNonOptionArgs();
         return nonOptionArgs.size() > 1 ? Scaling.of(Integer.parseInt(nonOptionArgs.get(1))) : Scaling.NONE;
     }
