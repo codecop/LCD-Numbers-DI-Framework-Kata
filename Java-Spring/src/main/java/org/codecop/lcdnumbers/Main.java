@@ -2,7 +2,6 @@ package org.codecop.lcdnumbers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +13,9 @@ public class Main implements ApplicationRunner {
     private final ScalingArgument scalingArgument;
     private final LcdDisplay lcdDisplay;
 
-    public Main(ScalingArgument scalingArgument, LcdDisplay lcdDisplay) {
+    public Main(ScalingArgument scalingArgument, DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
         this.scalingArgument = scalingArgument;
-        this.lcdDisplay = lcdDisplay;
+        this.lcdDisplay = new LcdDisplayImpl(digitsSplitter, digitScaler, digitPrinter);
     }
 
     @Override
