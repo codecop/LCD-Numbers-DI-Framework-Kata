@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DigitFactoryImpl implements DigitFactory {
 
-    @Autowired
-    private Patterns patterns;
+    private final Patterns patterns;
+
+    public DigitFactoryImpl(Patterns patterns) {
+        this.patterns = patterns;
+    }
 
     @Override
     public Digit create(int digit) {

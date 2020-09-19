@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 public class ScalingArgument {
     // This could be a @Configuration but then I cannot mock the Scaling in Main.
 
-    @Autowired
-    private ApplicationArguments args;
+    private final ApplicationArguments args;
+
+    public ScalingArgument(ApplicationArguments args) {
+        this.args = args;
+    }
 
     @Bean
     public Scaling getScaling() {

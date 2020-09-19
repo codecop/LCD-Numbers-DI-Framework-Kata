@@ -15,8 +15,11 @@ public class DigitPrinterImpl implements DigitPrinter {
 
     private static final String NEWLINE = "\n";
 
-    @Autowired
-    private Zipper zipper;
+    private final Zipper zipper;
+
+    public DigitPrinterImpl(Zipper zipper) {
+        this.zipper = zipper;
+    }
 
     @Override
     public String render(List<Digit> digits) {

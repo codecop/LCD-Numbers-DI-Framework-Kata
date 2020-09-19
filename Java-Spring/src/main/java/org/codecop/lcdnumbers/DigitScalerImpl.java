@@ -14,8 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DigitScalerImpl implements DigitScaler {
 
-    @Autowired
-    private ScalingRepeater repeater;
+    private final ScalingRepeater repeater;
+
+    public DigitScalerImpl(ScalingRepeater repeater) {
+        this.repeater = repeater;
+    }
 
     @Override
     public List<Digit> scale(List<Digit> digits, Scaling scaling) {

@@ -11,10 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main implements ApplicationRunner {
 
-    @Autowired
-    private ScalingArgument scalingArgument;
-    @Autowired
-    private LcdDisplay lcdDisplay;
+    private final ScalingArgument scalingArgument;
+    private final LcdDisplay lcdDisplay;
+
+    public Main(ScalingArgument scalingArgument, LcdDisplay lcdDisplay) {
+        this.scalingArgument = scalingArgument;
+        this.lcdDisplay = lcdDisplay;
+    }
 
     @Override
     public void run(ApplicationArguments args) {

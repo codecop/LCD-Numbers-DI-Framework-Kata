@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class DigitsSplitterImpl implements DigitsSplitter {
 
-    @Autowired
-    private NumeralSystem numeralSystem;
-    @Autowired
-    private DigitFactory digitFactory;
+    private final NumeralSystem numeralSystem;
+    private final DigitFactory digitFactory;
+
+    public DigitsSplitterImpl(NumeralSystem numeralSystem, DigitFactory digitFactory) {
+        this.numeralSystem = numeralSystem;
+        this.digitFactory = digitFactory;
+    }
 
     @Override
     public List<Digit> convert(int number) {

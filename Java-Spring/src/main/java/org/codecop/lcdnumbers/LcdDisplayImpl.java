@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class LcdDisplayImpl implements LcdDisplay {
 
-    @Autowired
-    private DigitsSplitter digitsSplitter;
-    @Autowired
-    private DigitScaler digitScaler;
-    @Autowired
-    private DigitPrinter digitPrinter;
+    private final DigitsSplitter digitsSplitter;
+    private final DigitScaler digitScaler;
+    private final DigitPrinter digitPrinter;
+
+    public LcdDisplayImpl(DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
+        this.digitsSplitter = digitsSplitter;
+        this.digitScaler = digitScaler;
+        this.digitPrinter = digitPrinter;
+    }
 
     @Override
     public String toLcd(int number, Scaling scaling) {
