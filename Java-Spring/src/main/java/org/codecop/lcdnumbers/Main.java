@@ -10,12 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main implements ApplicationRunner {
 
-    private final ScalingArgument scalingArgument;
     private final LcdDisplay lcdDisplay;
 
-    public Main(ScalingArgument scalingArgument, DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
-        this.scalingArgument = scalingArgument;
+    public Main(DigitsSplitter digitsSplitter, DigitScaler digitScaler, DigitPrinter digitPrinter) {
         this.lcdDisplay = new LcdDisplay(digitsSplitter, digitScaler, digitPrinter);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
     }
 
     @Override
@@ -33,11 +35,12 @@ public class Main implements ApplicationRunner {
 
         int number = Integer.parseInt(nonOptionArgs.get(0));
 
-        System.out.print(lcdDisplay.toLcd(number, scalingArgument.getScaling()));
+        System.out.print(lcdDisplay.toLcd(number, getScaling(args)));
     }
 
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+    public static Scaling getScaling(ApplicationArguments args) {
+        List<String> nonOptionArgs = args.getNonOptionArgs();
+        return nonOptionArgs.size() > 1 ? Scaling.of(Integer.parseInt(nonOptionArgs.get(1))) : Scaling.NONE;
     }
 
 }
