@@ -1,0 +1,46 @@
+name: Csharp-MsDependencyInjection
+
+on:
+  push:
+    paths:
+      - 'Csharp-MsDependencyInjection/**'
+      - '.github/workflows/csharp-msdependencyinjection.yml'
+  pull_request:
+    paths:
+      - 'Csharp-MsDependencyInjection/**'
+      - '.github/workflows/csharp-msdependencyinjection.yml'
+
+jobs:
+
+  matrix_build:
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ windows-latest ]
+        cs-versions: [ '5.0.x' ]
+    name: CSharp ${{ matrix.cs-versions }} Build on ${{ matrix.operating-system }}
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.cs-versions }}
+
+    - name: Build and test
+      working-directory: Csharp-MsDependencyInjection
+      run: |
+        dotnet restore
+        dotnet build --no-restore
+        dotnet test --no-build --verbosity normal
+
+    - name: Run the package
+      working-directory: Csharp-MsDependencyInjection
+      run: LcdNumbers\bin\Debug\netcoreapp5.0\LcdNumbers.exe 12345 3
+
+    - name: Run the package using build tool
+      working-directory: Csharp-MsDependencyInjection
+      run: dotnet run --project LcdNumbers 67890 3
