@@ -48,7 +48,7 @@ jobs:
 
     - name: Run the package
       working-directory: Java-Spring
-      run: java -jar target\lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 3
+      run: java -jar target/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 3
 
     - name: Run the package using build tool
       working-directory: Java-Spring
