@@ -41,7 +41,7 @@ jobs:
 
     - name: Build and test
       working-directory: Kotlin-Dagger2
-      run: ./gradlew clean test shadowJar -i --warning-mode all
+      run: ./gradlew clean test shadowJar -i --warning-mode all --stacktrace
 
     - name: Run the package
       working-directory: Kotlin-Dagger2
