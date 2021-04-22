@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest, windows-latest ]
+        operating-system: [ ubuntu-latest ]
         java-version: [ 1.8, 11, 16 ]
     name: Java ${{ matrix.java-version }} Build on ${{ matrix.operating-system }}
 
@@ -33,18 +33,12 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('java-junit/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('Java-Spring/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Build and test without Modules
+    - name: Build and test
       working-directory: Java-Spring
       run: ./mvnw -B clean test package
-      # if: (matrix.java-version == '1.8')
-
-#    - name: Build and test with Modules
-#      working-directory: Java-Spring
-#      run: ./mvnw -B clean test package -DargLine="--add-opens java.base/java.lang=ALL-UNNAMED"
-#      if: (matrix.java-version != '1.8')
 
     - name: Run the package
       working-directory: Java-Spring
