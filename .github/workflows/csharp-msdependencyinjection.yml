@@ -39,7 +39,7 @@ jobs:
 
     - name: Run the package
       working-directory: Csharp-MsDependencyInjection
-      run: LcdNumbers\bin\Debug\netcoreapp5.0\LcdNumbers.exe 12345 3
+      run: LcdNumbers\bin\Debug\net5.0\LcdNumbers.exe 12345 3
 
     - name: Run the package using build tool
       working-directory: Csharp-MsDependencyInjection
