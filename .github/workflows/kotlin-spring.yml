@@ -1,0 +1,52 @@
+name: Kotlin-Spring
+
+on:
+  push:
+    paths:
+      - 'Kotlin-Spring/**'
+      - '.github/workflows/kotlin-spring.yml'
+  pull_request:
+    paths:
+      - 'Kotlin-Spring/**'
+      - '.github/workflows/kotlin-spring.yml'
+
+jobs:
+
+  matrix_build:
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        java-version: [ 1.8, 11, 12 ]
+    name: Java ${{ matrix.java-version }} Build on ${{ matrix.operating-system }}
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java-version }}
+
+    - name: Cache gradle wrapper
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('Kotlin-Spring/**/*.gradle*', 'Kotlin-Spring/**/gradle-wrapper.properties') }}
+        restore-keys: ${{ runner.os }}-gradle
+
+    - name: Build and test
+      working-directory: Kotlin-Spring
+      run: ./gradlew clean test bootJar -i --warning-mode all --stacktrace
+
+    - name: Run the package
+      working-directory: Kotlin-Spring
+      run: java -jar build/libs/lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 3
+
+    - name: Run the package using build tool
+      working-directory: Kotlin-Spring
+      run: ./gradlew bootRun -Pargs=67890,3
