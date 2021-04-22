@@ -1,0 +1,55 @@
+name: Java-Spring
+
+on:
+  push:
+    paths:
+      - 'Java-Spring/**'
+      - '.github/workflows/java-spring.yml'
+  pull_request:
+    paths:
+      - 'Java-Spring/**'
+      - '.github/workflows/java-spring.yml'
+
+jobs:
+
+  matrix_build:
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest, windows-latest ]
+        java-version: [ 1.8, 11, 16 ]
+    name: Java ${{ matrix.java-version }} Build on ${{ matrix.operating-system }}
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java-version }}
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('java-junit/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Build and test without Modules
+      working-directory: Java-Spring
+      run: ./mvnw -B clean test package
+      # if: (matrix.java-version == '1.8')
+
+#    - name: Build and test with Modules
+#      working-directory: Java-Spring
+#      run: ./mvnw -B clean test package -DargLine="--add-opens java.base/java.lang=ALL-UNNAMED"
+#      if: (matrix.java-version != '1.8')
+
+    - name: Run the package
+      working-directory: Java-Spring
+      run: java -jar target\lcd-numbers-di-framework-kata-1.0.0-SNAPSHOT.jar 12345 3
+
+    - name: Run the package using build tool
+      working-directory: Java-Spring
+      run: ./mvnw -B spring-boot:run -Dspring-boot.run.arguments=67890,3
